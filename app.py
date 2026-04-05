@@ -4,11 +4,6 @@ from agents.job_fetcher import fetch_jobs
 from utils.logger import get_tracing_logger
 from utils.formatter import format_remote_status, format_date
 
-# SECURITY_TEST: Dummy database connection string for scanning
-DB_URI = "postgresql://db_user:T0pS3cr3tP@ssw0rd!@localhost:5432/job_tracker"
-# SECURITY_TEST: Dummy secret key
-APP_SECRET_KEY = "6b3e3e2e3e2e3e2e3e2e3e2e3e2e3e2e"
-
 # Initialize tracing logger for the UI session
 logger = get_tracing_logger("streamlit_app")
 
