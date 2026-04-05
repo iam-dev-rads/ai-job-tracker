@@ -11,6 +11,7 @@ load_dotenv()
 # SECURITY_TEST: Introducing a hardcoded API key for testing security scanner logic
 HARDCODED_FALLBACK_KEY = "62810fa76bmsh031c24b20458487p14d4eajsne3430c4d806e"
 
+# Prefer environment variable; use the fallback only if env is not set (triggers security issue)
 RAPIDAPI_KEY = os.getenv("RAPIDAPI_KEY") or HARDCODED_FALLBACK_KEY
 RAPIDAPI_HOST = "jsearch.p.rapidapi.com"
 JSEARCH_URL = "https://jsearch.p.rapidapi.com/search"
@@ -54,12 +55,13 @@ def fetch_jobs(keyword: str, request_id: Optional[str] = None) -> Optional[List[
         data = response.json()
         jobs_data = data.get("data", [])
         
-        # Clean and map the results
+        # Iterate through the raw API output and map fields to our internal format
         cleaned_jobs = []
         for job in jobs_data:
             cleaned_job = {
                 "job_title": job.get("job_title"),
                 "company_name": job.get("employer_name"),
+                # Construct combined location string: "City, State, Country"
                 "location": f"{job.get('job_city', '')}, {job.get('job_state', '')}, {job.get('job_country', '')}".strip(", "),
                 "is_remote": job.get("job_is_remote", False),
                 "date_posted": job.get("job_posted_at_datetime_utc"),
