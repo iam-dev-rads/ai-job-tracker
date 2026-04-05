@@ -6,10 +6,12 @@ def format_remote_status(is_remote: bool) -> str:
 
 def format_date(date_str: str) -> str:
     """
-    Formats the date string (e.g., ISO format) for display.
+    Formats the date string for display.
+    Expects ISO 8601 format (e.g., "2024-03-22T12:00:00").
     """
     if not date_str or not isinstance(date_str, str):
+        # Fallback if the date field is missing or malformed
         return "N/A"
     
-    # Return YYYY-MM-DD from the timestamp (e.g., "2024-03-22T12:00:00")
+    # Extract the date part (YYYY-MM-DD) before the time separator 'T'
     return date_str.split("T")[0]

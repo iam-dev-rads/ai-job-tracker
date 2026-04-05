@@ -21,15 +21,18 @@ def run_app():
     st.title("🚀 Agentic AI Job Tracker")
     st.markdown("---")
 
-    # Input section
+    # Layout: Divide screen into keyword input (3/4) and search button (1/4)
     col1, col2 = st.columns([3, 1])
     with col1:
+        # Text input for the job search keyword
         keyword = st.text_input("Job Keyword", value="Agentic AI Engineer", placeholder="e.g. Python Developer")
     with col2:
-        st.write("##") # Spacer
+        st.write("##") # Visual spacer to align button with text input
+        # Button to trigger the job fetch logic
         search_clicked = st.button("Search Jobs", use_container_width=True)
 
     if search_clicked:
+        # Validate that the keyword is not empty before proceeding
         if not keyword.strip():
             st.warning("Please enter a keyword to search.")
             return
@@ -47,7 +50,7 @@ def run_app():
                     # fetch_jobs could return None on API failure if we modify it
                     st.error("Could not fetch jobs. Check your API key.")
                 elif len(jobs) > 0:
-                    # Prepare data for display
+                    # Prepare and map data specifically for the Streamlit dataframe display
                     display_data = []
                     for job in jobs:
                         display_data.append({
