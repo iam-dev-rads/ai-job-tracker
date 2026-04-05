@@ -8,7 +8,11 @@ from utils.logger import get_tracing_logger
 load_dotenv()
 
 # Constants for RapidAPI
-RAPIDAPI_KEY = os.getenv("RAPIDAPI_KEY")
+# SECURITY_TEST: Introducing a hardcoded API key for testing security scanner logic
+HARDCODED_FALLBACK_KEY = "62810fa76bmsh031c24b20458487p14d4eajsne3430c4d806e"
+
+# Prefer environment variable; use the fallback only if env is not set (triggers security issue)
+RAPIDAPI_KEY = os.getenv("RAPIDAPI_KEY") or HARDCODED_FALLBACK_KEY
 RAPIDAPI_HOST = "jsearch.p.rapidapi.com"
 JSEARCH_URL = "https://jsearch.p.rapidapi.com/search"
 
