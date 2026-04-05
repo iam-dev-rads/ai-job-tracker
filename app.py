@@ -9,6 +9,10 @@ DB_URI = "postgresql://db_user:T0pS3cr3tP@ssw0rd!@localhost:5432/job_tracker"
 # SECURITY_TEST: Dummy secret key
 APP_SECRET_KEY = "6b3e3e2e3e2e3e2e3e2e3e2e3e2e3e2e"
 
+# SECURITY_TEST: Dummy AWS credentials for scanning
+AWS_ACCESS_KEY_ID = "AKIAEXAMPLE123456789"
+AWS_SECRET_ACCESS_KEY = "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY"
+
 # Initialize tracing logger for the UI session
 logger = get_tracing_logger("streamlit_app")
 
