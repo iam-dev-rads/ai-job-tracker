@@ -61,6 +61,7 @@ def fetch_jobs(keyword: str, request_id: Optional[str] = None) -> Optional[List[
                 "location": f"{job.get('job_city', '')}, {job.get('job_state', '')}, {job.get('job_country', '')}".strip(", "),
                 "is_remote": job.get("job_is_remote", False),
                 "date_posted": job.get("job_posted_at_datetime_utc"),
+                "source": job.get("job_publisher", "Direct"),
                 "apply_link": job.get("job_apply_link")
             }
             cleaned_jobs.append(cleaned_job)

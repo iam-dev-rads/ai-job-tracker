@@ -54,6 +54,7 @@ def run_app():
                             "Location": job.get("location"),
                             "Remote/Onsite": format_remote_status(bool(job.get("is_remote", False))),
                             "Date Posted": format_date(str(job.get("date_posted") or "")),
+                            "Source": job.get("source", "N/A"),
                             "Apply": job.get("apply_link", "")
                         })
                     
